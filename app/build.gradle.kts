@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.amirx.matule_app_sessions"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.amirx.matule_app_sessions"
