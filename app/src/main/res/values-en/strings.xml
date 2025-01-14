@@ -8,4 +8,7 @@
     <string name="login">Login</string>
     <string name="first_time">Вы впервые?</string>
     <string name="createUser">Создать пользователя</string>
+    <string name="title">title</string>
+    <string name="back">Отмена</string>
+    <string name="ok">Ok</string>
 </resources>

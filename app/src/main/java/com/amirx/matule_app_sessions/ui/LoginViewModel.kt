@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.amirx.matule_app_sessions.data.datasource.network.ResponseState
 import com.amirx.matule_app_sessions.data.repository.AuthRepository
@@ -69,4 +70,10 @@ sealed class LoginState {
     class Success : LoginState()
     class Error(val message: String) : LoginState()
     class Loading : LoginState()
+}
+
+class LoginViewModelProvider() : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        return LoginViewModel() as T
+    }
 }

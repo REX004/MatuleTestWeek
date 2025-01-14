@@ -12,8 +12,9 @@ import io.ktor.client.plugins.logging.Logging
 
 object SupabaseClient {
 
-    private val URL = ""
-    private val KEY = ""
+    private const val KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1uZ2Npc3lqbXZibWVibmxhcGh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzAxOTAyMDIsImV4cCI6MjA0NTc2NjIwMn0.MFGhx41ZSshllA0x677E_sy3nFOcjZG-HFuTNE8yBz4"
+    private const val URL = "https://mngcisyjmvbmebnlapht.supabase.co"
 
     @OptIn(SupabaseInternal::class)
     val supabase: SupabaseClient by lazy {
