@@ -69,7 +69,9 @@ class LoginFragment : Fragment() {
     private fun applyClick() {
         binding.loginBt.setOnClickListener {
             lifecycleScope.launch {
-                viewModel.loginUser(binding.emailET.text.toString(), binding.passwordET.text.toString(), requireContext())
+                val emailEt = binding.emailET.text.toString()
+                val passwordEt = binding.passwordET.text.toString()
+                viewModel.loginUser(emailEt, passwordEt, requireContext())
             }
         }
     }
