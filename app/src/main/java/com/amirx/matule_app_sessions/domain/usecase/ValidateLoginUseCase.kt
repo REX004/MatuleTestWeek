@@ -14,12 +14,10 @@ class ValidateLoginUseCase {
     }
 
     private fun isEmailInvalid(email: String): Boolean {
-        return false
-//        return email.isBlank() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()
+        return email.isBlank() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     private fun isPasswordInvalid(password: String): Boolean {
-        return false
-//        return password.isBlank()
+        return password.isBlank()
     }
 }

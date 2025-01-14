@@ -28,14 +28,14 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class UserExceptionTest {
+class UserComplainTest {
 
     @Rule
     @JvmField
     var mActivityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
-    fun userExceptionTest() {
+    fun userComplainTest() {
         val textInputEditText = onView(
             allOf(
                 withId(R.id.emailET),
@@ -49,7 +49,7 @@ class UserExceptionTest {
                 isDisplayed()
             )
         )
-        textInputEditText.perform(replaceText("gsh@gamil.com"), closeSoftKeyboard())
+        textInputEditText.perform(replaceText("hello@gmail.com"), closeSoftKeyboard())
 
         val textInputEditText2 = onView(
             allOf(
@@ -64,7 +64,7 @@ class UserExceptionTest {
                 isDisplayed()
             )
         )
-        textInputEditText2.perform(replaceText("yshsh"), closeSoftKeyboard())
+        textInputEditText2.perform(replaceText("udhd"), closeSoftKeyboard())
 
         val materialButton = onView(
             allOf(

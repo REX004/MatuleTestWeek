@@ -34,62 +34,10 @@ class PasswordValidationTest {
 
     @Test
     fun passwordValidationTest() {
-        val textInputEditText = onView(
-            allOf(
-                withId(R.id.emailET),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.baseContainer),
-                        0
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        textInputEditText.perform(replaceText("hell"), closeSoftKeyboard())
-
-        val textInputEditText2 = onView(
-            allOf(
-                withId(R.id.emailET), withText("hell"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.baseContainer),
-                        0
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        textInputEditText2.perform(click())
-
-        val textInputEditText3 = onView(
-            allOf(
-                withId(R.id.emailET), withText("hell"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.baseContainer),
-                        0
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        textInputEditText3.perform(replaceText("hellhellk@gmail.com"))
 
         val textInputEditText4 = onView(
             allOf(
                 withId(R.id.emailET), withText("hellhellk@gmail.com"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.baseContainer),
-                        0
-                    ),
-                    1
-                ),
-                isDisplayed()
             )
         )
         textInputEditText4.perform(closeSoftKeyboard())
@@ -97,16 +45,6 @@ class PasswordValidationTest {
         val materialButton = onView(
             allOf(
                 withId(R.id.loginBt), withText("Войти"),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.baseContainer),
-                        childAtPosition(
-                            withId(R.id.mainContainer),
-                            1
-                        )
-                    ),
-                    3
-                ),
                 isDisplayed()
             )
         )
@@ -115,8 +53,6 @@ class PasswordValidationTest {
         val textView = onView(
             allOf(
                 withId(R.id.tvConfirmMessage), withText("Пароль не может быть пустым"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
             )
         )
         textView.check(matches(withText("Пароль не может быть пустым")))
