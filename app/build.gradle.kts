@@ -52,6 +52,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.navigation.ui.ktx)
 
     implementation("androidx.navigation:navigation-dynamic-features-fragment:2.3.0-beta01")
     implementation("androidx.activity:activity-ktx:1.9.0")

@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/home_2"
+        android:title="home" />
+    <item
+        android:id="@+id/favoritesFragment"
+        android:icon="@drawable/favotite"
+        android:title="favorites" />
+    <item
+        android:id="@+id/cart"
+        android:title="cart" />
+    <item
+        android:id="@+id/messageFragment"
+        android:icon="@drawable/call"
+        android:title="messages" />
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/profile"
+        android:title="profiles" />
+</menu>
