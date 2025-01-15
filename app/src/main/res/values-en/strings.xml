@@ -11,4 +11,14 @@
     <string name="title">title</string>
     <string name="back">Отмена</string>
     <string name="ok">Ok</string>
+    <string name="start">Начать</string>
+    <string name="next">Next</string>
+    <string name="welcome">Добро пожаловать</string>
+    <string name="start_trip">Начнем путешествие</string>
+    <string name="onboarding_2_description">Умная, великолепная и модная коллекция Изучите сейчас</string>
+    <string name="onboarding_3_main">У вас есть сила, чтобы</string>
+    <string name="onboarding_3_description">В вашей комнате много красивых и привлекательных растений</string>
+    <string name="main">Главная</string>
+    <string name="search">Поиск</string>
+
 </resources>

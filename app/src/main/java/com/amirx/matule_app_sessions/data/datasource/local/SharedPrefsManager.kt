@@ -16,6 +16,20 @@ class SharedPrefsManager(baseContext: Context) {
         return token.isNullOrEmpty()
     }
 
+    fun saveStateOnboarding(state: Boolean) {
+        sharedPrefs.edit()
+            .putString("onboarding_state", state.toString())
+            .apply()
+    }
+
+    fun checkOnboarding(): Boolean {
+        val token = sharedPrefs.getString("onboarding_state", "true")
+        if (token == "true") {
+            return true
+        } else {
+            return false
+        }
+    }
 
     fun getImageUrl(): String {
         val imageUrl = sharedPrefs.getString("imageUrl", "")

@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.amirx.matule_app_sessions.R
+import com.amirx.matule_app_sessions.data.datasource.local.SharedPrefsManager
 import com.amirx.matule_app_sessions.databinding.FragmentLoginBinding
 import com.amirx.matule_app_sessions.domain.usecase.CustomConfirmDialog
 import kotlinx.coroutines.launch
@@ -30,10 +31,16 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
         applyClick()
+        val check = SharedPrefsManager(requireContext()).checkToken()
+        if (check) {
+            findNavController().navigate(R.id.onboardingFragment)
+        }
     }
 
     private fun observeViewModel() {
