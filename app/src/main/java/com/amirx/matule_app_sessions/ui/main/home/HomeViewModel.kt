@@ -16,6 +16,8 @@ class HomeViewModel : ViewModel() {
     private val _products = MutableLiveData<ResponseState<List<Product>>>()
     val products: LiveData<ResponseState<List<Product>>> = _products
 
+    private val _popularProducts = MutableLiveData<ResponseState<List<Product>>>()
+    val popularProducts: LiveData<ResponseState<List<Product>>> = _popularProducts
 
     init {
         getProducts()
@@ -49,12 +51,12 @@ class HomeViewModel : ViewModel() {
 
     fun getPopularProducts() {
         viewModelScope.launch {
-            _products.value = ResponseState.Loading()
+            _popularProducts.value = ResponseState.Loading()
             try {
                 val result = ProductRepository().getPopularProducts()
-                _products.value = ResponseState.Success(result.take(2))
+                _popularProducts.value = ResponseState.Success(result.take(2))
             } catch (e: Exception) {
-                _products.value =
+                _popularProducts.value =
                     ResponseState.Error(e.message.toString() ?: "Failed to load popular products")
             }
         }
@@ -72,6 +74,8 @@ class HomeViewModel : ViewModel() {
             }
         }
     }
+
+
 }
 
 class HomeViewModelProvider() : ViewModelProvider.Factory {

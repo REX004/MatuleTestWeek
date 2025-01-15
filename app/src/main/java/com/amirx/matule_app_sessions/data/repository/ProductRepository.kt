@@ -1,5 +1,6 @@
 package com.amirx.matule_app_sessions.data.repository
 
+import android.util.Log
 import com.amirx.matule_app_sessions.data.datasource.network.SupabaseClient
 import com.amirx.matule_app_sessions.data.models.Product
 import io.github.jan.supabase.postgrest.from
@@ -11,8 +12,10 @@ class ProductRepository {
             val result = SupabaseClient.supabase.from("Product")
                 .select()
                 .decodeList<Product>()
+            Log.d("ProductRepository", result.toString())
             return result
         } catch (e: Exception) {
+            Log.e("ProductRepository", e.message.toString())
             return emptyList()
         }
     }
@@ -25,7 +28,9 @@ class ProductRepository {
                         eq("popular", true)
                     }
                 }
-                .decodeList<Product>()
+                .decodeList<Product>().take(2)
+            Log.d("ProductRepository", result.toString())
+
             return result
         } catch (e: Exception) {
             return emptyList()
@@ -41,6 +46,8 @@ class ProductRepository {
                     }
                 }
                 .decodeList<Product>()
+            Log.d("ProductRepository", result.toString())
+
             return result
         } catch (e: Exception) {
             return emptyList()
