@@ -74,8 +74,6 @@ class HomeViewModel : ViewModel() {
             }
         }
     }
-
-
 }
 
 class HomeViewModelProvider() : ViewModelProvider.Factory {

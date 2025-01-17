@@ -37,5 +37,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        binding.mainBt.setOnClickListener {
+            navController.navigate(R.id.cart)
+        }
     }
 }

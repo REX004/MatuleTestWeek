@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amirx.matule_app_sessions.R
 import com.amirx.matule_app_sessions.data.datasource.network.ResponseState
+import com.amirx.matule_app_sessions.data.repository.ProductRepository
 import com.amirx.matule_app_sessions.databinding.FragmentHomeBinding
 import com.amirx.matule_app_sessions.ui.base.BaseFragment
 import com.amirx.matule_app_sessions.ui.main.home.adapters.CategoryAdapter
@@ -18,7 +19,10 @@ import com.amirx.matule_app_sessions.ui.main.home.adapters.ProductAdapter
 
 class HomeFragment : BaseFragment() {
 
-    private val binding: FragmentHomeBinding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
+    private lateinit var binding: FragmentHomeBinding
+    private val viewModel: HomeViewModel by viewModels {
+        HomeViewModelProvider()
+    }
     private val popularAdapter by lazy {
         ProductAdapter(requireContext()) { product ->
             val action =
@@ -26,12 +30,8 @@ class HomeFragment : BaseFragment() {
             findNavController().navigate(action)
         }
     }
-
-    private val viewModel: HomeViewModel by viewModels(factoryProducer = {
-        HomeViewModelProvider()
-    })
     private val categoryAdapter by lazy {
-        CategoryAdapter { category ->
+        CategoryAdapter { product ->
 //            val action =
 //                HomeFragmentDirections.actionHomeFragmentToCategoryDetailFragment(category)
 //            findNavController().navigate(action)
@@ -42,20 +42,27 @@ class HomeFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun applyClick() {
-        super.applyClick()
-        binding.allBt.setOnClickListener {
-            findNavController().navigate(R.id.popularProductsFragment)
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getPopularProducts()
-        viewModel.getProducts()
+
+    }
+
+    override fun applyClick() {
+        super.applyClick()
+//        binding.popularContainer.setOnClickListener {
+//            findNavController().navigate(R.id.pop)
+//        }
+        binding.cart.setOnClickListener {
+            findNavController().navigate(R.id.cart)
+        }
+//        binding.searchET.setOnClickListener {
+//            findNavController().navigate(R.id.sea)
+//        }
     }
 
     override fun observeAdapters() {
@@ -67,37 +74,16 @@ class HomeFragment : BaseFragment() {
             binding.categoryRv.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.categoryRv.adapter = categoryAdapter
-            Log.d("HomeFragment", "Successful setupUI")
+            Log.d("com.amirx.matule_app_sessions.ui.main.home.HomeFragment", "Successful setupUI")
 
         } catch (e: Exception) {
-            Log.e("HomeFragment", "Failed setupUI")
+            Log.e("com.amirx.matule_app_sessions.ui.main.home.HomeFragment", "Failed setupUI")
 
         }
     }
 
     override fun setupObserves() {
         super.setupObserves()
-        viewModel.products.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                is ResponseState.Loading -> {
-                    binding.popularRv.visibility = View.GONE
-                    binding.progressBar.visibility = View.VISIBLE
-                }
-
-                is ResponseState.Success -> {
-                    binding.popularRv.visibility = View.VISIBLE
-                    binding.progressBar.visibility = View.GONE
-                    Log.d("HomeFragment", "Products received: ${state.data}")
-                    categoryAdapter.submitList(state.data)
-                }
-
-                is ResponseState.Error -> {
-                    binding.popularRv.visibility = View.GONE
-                    binding.progressBar.visibility = View.GONE
-                }
-            }
-        }
-
         viewModel.popularProducts.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is ResponseState.Loading -> {
@@ -108,8 +94,9 @@ class HomeFragment : BaseFragment() {
                 is ResponseState.Success -> {
                     binding.popularRv.visibility = View.VISIBLE
                     binding.progressBar.visibility = View.GONE
-                    Log.d("HomeFragment", "Products received: ${state.data}")
                     popularAdapter.submitList(state.data)
+                    categoryAdapter.submitList(state.data)
+
                 }
 
                 is ResponseState.Error -> {
@@ -119,5 +106,4 @@ class HomeFragment : BaseFragment() {
             }
         }
     }
-
 }

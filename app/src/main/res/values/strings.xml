@@ -7,7 +7,6 @@
     <string name="login">Войти</string>
     <string name="first_time">Вы впервые?</string>
     <string name="createUser">Создать пользователя</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title">title</string>
     <string name="back">Отмена</string>
     <string name="ok">Ok</string>
@@ -24,4 +23,11 @@
     <string name="popular">Популярное</string>
     <string name="all">Все</string>
     <string name="sales">Акции</string>
+    <string name="sumTxt">Сумма</string>
+    <string name="deliveryTxt">Доставка</string>
+    <string name="itogTxt">Итого</string>
+    <string name="take_delivey">Оформить заказ</string>
+    <string name="more_info">Подробнее</string>
+    <string name="add_to_cart">В корзину</string>
+    <string name="favorite">Избранное</string>
 </resources>

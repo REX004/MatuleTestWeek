@@ -14,5 +14,5 @@ data class Product(
     val description: String? = null,
     val gender: String? = null,
     val category: String? = null,
-    val popular: Boolean,
+    val popular: Boolean?= null
 ) : Parcelable

@@ -18,9 +18,17 @@
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
-        android:name="com.amirx.matule_app_sessions.ui.main.FavoriteFragment"
+        android:name="com.amirx.matule_app_sessions.ui.main.favorite.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/action_favoritesFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment">
+            <argument
+                android:name="product"
+                app:argType="com.amirx.matule_app_sessions.data.models.Product" />
+        </action>
+    </fragment>
     <fragment
         android:id="@+id/messageFragment"
         android:name="com.amirx.matule_app_sessions.ui.main.NotificationFragment"
@@ -50,6 +58,16 @@
                 android:name="product"
                 app:argType="com.amirx.matule_app_sessions.data.models.Product" />
         </action>
+        <action
+            android:id="@+id/action_homeFragment_to_cart"
+            app:destination="@id/cart" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/productDetailFragment">
+            <argument
+                android:name="product"
+                app:argType="com.amirx.matule_app_sessions.data.models.Product" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/onboardingFragment"
@@ -64,7 +82,11 @@
         android:id="@+id/productDetailFragment"
         android:name="com.amirx.matule_app_sessions.ui.detail.ProductDetailFragment"
         android:label="fragment_product_detail"
-        tools:layout="@layout/fragment_product_detail" />
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="product"
+            app:argType="com.amirx.matule_app_sessions.data.models.Product" />
+    </fragment>
     <fragment
         android:id="@+id/popularProductsFragment"
         android:name="com.amirx.matule_app_sessions.ui.main.home.PopularProductsFragment"
@@ -85,4 +107,8 @@
                 app:argType="com.amirx.matule_app_sessions.data.models.Product" />
         </action>
     </fragment>
+    <fragment
+        android:id="@+id/cart"
+        android:name="com.amirx.matule_app_sessions.ui.CartFragment"
+        android:label="Cart" />
 </navigation>
