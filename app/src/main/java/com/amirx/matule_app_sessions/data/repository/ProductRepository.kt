@@ -1,10 +1,15 @@
 package com.amirx.matule_app_sessions.data.repository
 
 import android.util.Log
+import com.amirx.matule_app_sessions.data.datasource.network.ResponseState
 import com.amirx.matule_app_sessions.data.datasource.network.SupabaseClient
+import com.amirx.matule_app_sessions.data.models.Cart
 import com.amirx.matule_app_sessions.data.models.Favorite
 import com.amirx.matule_app_sessions.data.models.Product
+import io.github.jan.supabase.exceptions.HttpRequestException
+import io.github.jan.supabase.exceptions.RestException
 import io.github.jan.supabase.postgrest.from
+import io.ktor.client.plugins.HttpRequestTimeoutException
 
 class ProductRepository {
 
@@ -76,6 +81,73 @@ class ProductRepository {
             Log.d("ProductRepository", result.toString())
 
         } catch (e: Exception) {
+        }
+    }
+
+    suspend fun getProductsCart(user_id: String): List<Cart> {
+        try {
+            val result = SupabaseClient.supabase.from("Cart")
+                .select {
+                    filter {
+                        eq("user_id", user_id)
+                    }
+                }
+                .decodeList<Cart>()
+            Log.d("ProductRepository", result.toString())
+
+            return result
+        } catch (e: Exception) {
+            return emptyList()
+        }
+    }
+
+    suspend fun saveToCart(product: Product, user_id: String) {
+        try {
+            val result = Cart(product = product, user_id = user_id, quantity = 1)
+            SupabaseClient.supabase.from("Cart").insert(result)
+            Log.d("ProductRepository", result.toString())
+        } catch (e: Exception) {
+
+        }
+    }
+
+    suspend fun updateQuantity(cart: Cart, newQuantity: Int): ResponseState<Unit> {
+        return try {
+            SupabaseClient.supabase.from("Cart").update({
+                set("quantity", newQuantity)
+            }) {
+                filter {
+                    eq("id", cart.id!!)
+                }
+            }
+            ResponseState.Success(Unit)
+        } catch (e: HttpRequestTimeoutException) {
+            ResponseState.Error("Time limited")
+        } catch (e: HttpRequestException) {
+            ResponseState.Error("No internet")
+        } catch (e: RestException) {
+            ResponseState.Error("Error updating cart item quantity")
+        } catch (e: Exception) {
+            ResponseState.Error("Some error occurred")
+        }
+    }
+
+    suspend fun deleteFromCart(cart: Cart): ResponseState<Unit> {
+        return try {
+            SupabaseClient.supabase.from("Cart").delete {
+                filter {
+                    eq("id", cart.id!!)
+                }
+            }
+            ResponseState.Success(Unit)
+        } catch (e: HttpRequestTimeoutException) {
+            ResponseState.Error("Time limited")
+        } catch (e: HttpRequestException) {
+            ResponseState.Error("No internet")
+        } catch (e: RestException) {
+            ResponseState.Error("Error deleting item from cart")
+        } catch (e: Exception) {
+            ResponseState.Error("Some error occurred")
         }
     }
 

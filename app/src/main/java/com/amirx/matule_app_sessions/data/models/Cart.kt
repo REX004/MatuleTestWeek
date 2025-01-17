@@ -7,7 +7,8 @@ import kotlinx.serialization.Serializable
 @Serializable
 @Parcelize
 data class Cart(
-    val id: Int,
+    val id: Int?= null,
+    val user_id: String,
     val product: Product,
-    val quantity: Int
+    var quantity: Int?= null
 ) : Parcelable

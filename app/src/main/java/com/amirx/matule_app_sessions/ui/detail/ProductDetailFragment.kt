@@ -134,6 +134,9 @@ class ProductDetailFragment : BaseFragment() {
             currentProduct?.let { updateDetails(it) }
             binding.moreInfo.visibility = View.GONE
         }
+        binding.addToCartBt.setOnClickListener {
+            viewModel.saveToCart(currentProduct!!, "some_user_id")
+        }
         binding.favoriteBt.setOnClickListener {
             currentProduct?.let { product ->
                 val userId = getCurrentUserId()

@@ -1,10 +1,12 @@
 package com.amirx.matule_app_sessions.ui.detail
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.amirx.matule_app_sessions.data.datasource.network.ResponseState
+import com.amirx.matule_app_sessions.data.models.Cart
 import com.amirx.matule_app_sessions.data.models.Product
 import com.amirx.matule_app_sessions.data.repository.ProductRepository
 import kotlinx.coroutines.launch
@@ -20,6 +22,9 @@ class DetailViewModel(private val repository: ProductRepository) : ViewModel() {
     private val _state = MutableLiveData<ResponseState<Unit>>()
     val state: LiveData<ResponseState<Unit>> = _state
 
+    private val _cart = MutableLiveData<ResponseState<Unit>>()
+    val cart: LiveData<ResponseState<Unit>> = _cart
+
     fun getPopularProducts() {
         viewModelScope.launch {
             _popularProducts.postValue(ResponseState.Loading())
@@ -28,6 +33,18 @@ class DetailViewModel(private val repository: ProductRepository) : ViewModel() {
                 _popularProducts.postValue(ResponseState.Success(products))
             } catch (e: Exception) {
                 _popularProducts.postValue(ResponseState.Error(e.message.toString()))
+            }
+        }
+    }
+
+    fun saveToCart(product: Product, user_id: String) {
+        viewModelScope.launch {
+            _cart.value = ResponseState.Loading()
+            try {
+                val result = repository.saveToCart(product, user_id)
+                _cart.value = ResponseState.Success(result)
+            } catch (e: Exception) {
+                _cart.value = ResponseState.Error("Failed add to cart")
             }
         }
     }

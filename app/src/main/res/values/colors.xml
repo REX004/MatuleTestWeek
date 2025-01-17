@@ -10,4 +10,5 @@
     <color name="disable">#2B6B8B</color>
     <color name="block">#FFFFFFFF</color>
     <color name="hint">#6A6A6A</color>
+    <color name="red">#F87265</color>
 </resources>

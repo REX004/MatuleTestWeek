@@ -109,6 +109,6 @@
     </fragment>
     <fragment
         android:id="@+id/cart"
-        android:name="com.amirx.matule_app_sessions.ui.CartFragment"
+        android:name="com.amirx.matule_app_sessions.ui.main.cart.CartFragment"
         android:label="Cart" />
 </navigation>
