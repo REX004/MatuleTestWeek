@@ -1,6 +1,7 @@
 package com.amirx.matule_app_sessions.data.repository
 
 import android.util.Log
+import androidx.room.Query
 import com.amirx.matule_app_sessions.data.datasource.network.ResponseState
 import com.amirx.matule_app_sessions.data.datasource.network.SupabaseClient
 import com.amirx.matule_app_sessions.data.models.Cart
@@ -148,6 +149,25 @@ class ProductRepository {
             ResponseState.Error("Error deleting item from cart")
         } catch (e: Exception) {
             ResponseState.Error("Some error occurred")
+        }
+    }
+
+    suspend fun searchProducts(query: String): List<Product> {
+        return try {
+            SupabaseClient.supabase
+                .from("Product")
+                .select {
+                    filter {
+                        ilike("name", "%$query%")
+
+                    }
+                    filter {
+                        ilike("description", "%$query%")
+                    }
+                }
+                .decodeList<Product>()
+        } catch (e: Exception) {
+            emptyList()
         }
     }
 
