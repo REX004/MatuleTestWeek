@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.amirx.matule_app_sessions.ui.LoginFragment"
+        android:name="com.amirx.matule_app_sessions.ui.authorization.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -15,6 +15,12 @@
             app:destination="@id/onboardingFragment">
 
         </action>
+        <action
+            android:id="@+id/action_loginFragment_to_signupFragment"
+            app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
@@ -115,4 +121,21 @@
         android:id="@+id/searchFragment"
         android:name="com.amirx.matule_app_sessions.ui.main.home.search.SearchFragment"
         android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.amirx.matule_app_sessions.ui.authorization.signup.SignupFragment"
+        android:label="SignupFragment" />
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.amirx.matule_app_sessions.ui.authorization.forgotPassword.ForgotPasswordFragment"
+        android:label="ForgotPasswordFragment" >
+        <action
+            android:id="@+id/action_forgotPasswordFragment_to_otpFragment"
+            app:destination="@id/otpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/otpFragment"
+        android:name="com.amirx.matule_app_sessions.ui.authorization.otp.OtpFragment"
+        android:label="fragment_otp"
+        tools:layout="@layout/fragment_otp" />
 </navigation>

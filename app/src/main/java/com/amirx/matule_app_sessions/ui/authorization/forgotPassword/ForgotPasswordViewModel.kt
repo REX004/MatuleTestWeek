@@ -1,4 +1,4 @@
-package com.amirx.matule_app_sessions.ui
+package com.amirx.matule_app_sessions.ui.authorization.forgotPassword
 
 import android.content.Context
 import androidx.lifecycle.LiveData
@@ -11,7 +11,7 @@ import com.amirx.matule_app_sessions.data.repository.AuthRepository
 import com.amirx.matule_app_sessions.domain.usecase.ValidateLoginUseCase
 import kotlinx.coroutines.launch
 
-class LoginViewModel : ViewModel() {
+class ForgotPasswordViewModel : ViewModel() {
     private val _state = MutableLiveData<LoginState>()
     val state: LiveData<LoginState> = _state
 
@@ -22,12 +22,12 @@ class LoginViewModel : ViewModel() {
     private val _loginErrors = MutableLiveData<Map<String, String>>()
     val loginErrors: LiveData<Map<String, String>> = _loginErrors
 
-    fun loginUser(email: String, password: String, context: Context) {
+    fun loginUser(email: String, context: Context) {
         viewModelScope.launch {
             _loading.value = true
-            when (val result = validateLoginUseCase.execute(email, password)) {
+            when (val result = validateLoginUseCase.execute(email, "hello")) {
                 is ResponseState.Success -> {
-                    when (val authResult = AuthRepository().signUser(email, password, context)) {
+                    when (val authResult = AuthRepository().getOtpUser(email, context)) {
                         is ResponseState.Success -> {
                             _loading.value = false
                             _state.value = LoginState.Success()
@@ -59,8 +59,10 @@ class LoginViewModel : ViewModel() {
 
                 else -> {
 
+
                 }
             }
+
         }
 
     }
@@ -72,8 +74,8 @@ sealed class LoginState {
     class Loading : LoginState()
 }
 
-class LoginViewModelProvider() : ViewModelProvider.Factory {
+class ForgotPasswordViewModelProvider() : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return LoginViewModel() as T
+        return ForgotPasswordViewModel() as T
     }
 }

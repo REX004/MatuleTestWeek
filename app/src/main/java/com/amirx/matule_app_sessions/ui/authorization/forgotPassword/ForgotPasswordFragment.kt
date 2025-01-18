@@ -1,8 +1,6 @@
-package com.amirx.matule_app_sessions.ui
+package com.amirx.matule_app_sessions.ui.authorization.forgotPassword
 
-import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,16 +10,24 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.amirx.matule_app_sessions.R
 import com.amirx.matule_app_sessions.data.datasource.local.SharedPrefsManager
+import com.amirx.matule_app_sessions.databinding.DialogAuthorizationBinding
+import com.amirx.matule_app_sessions.databinding.DialogBinding
+import com.amirx.matule_app_sessions.databinding.FragmentForgotPasswordBinding
 import com.amirx.matule_app_sessions.databinding.FragmentLoginBinding
 import com.amirx.matule_app_sessions.domain.usecase.CustomConfirmDialog
+import com.amirx.matule_app_sessions.domain.usecase.DialogAuthorization
 import kotlinx.coroutines.launch
 
 
-class LoginFragment : Fragment() {
+class ForgotPasswordFragment : Fragment() {
 
-    private val binding: FragmentLoginBinding by lazy { FragmentLoginBinding.inflate(layoutInflater) }
-    private val viewModel: LoginViewModel by viewModels(factoryProducer = {
-        LoginViewModelProvider()
+    private val binding: FragmentForgotPasswordBinding by lazy {
+        FragmentForgotPasswordBinding.inflate(
+            layoutInflater
+        )
+    }
+    private val viewModel: ForgotPasswordViewModel by viewModels(factoryProducer = {
+        ForgotPasswordViewModelProvider()
     })
 
     override fun onCreateView(
@@ -31,16 +37,20 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
-
+    private val dialogBinding: DialogAuthorizationBinding by lazy {
+        DialogAuthorizationBinding.inflate(
+            layoutInflater
+        )
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
         applyClick()
-        val check = SharedPrefsManager(requireContext()).checkToken()
-        if (check) {
-            findNavController().navigate(R.id.onboardingFragment)
-        }
+//        val check = SharedPrefsManager(requireContext()).checkToken()
+//        if (check) {
+//            findNavController().navigate(R.id.onboardingFragment)
+//        }
     }
 
     private fun observeViewModel() {
@@ -56,7 +66,7 @@ class LoginFragment : Fragment() {
                 is LoginState.Success -> {
                     binding.mainContainer.visibility = View.VISIBLE
                     binding.progressBar.visibility = View.GONE
-                    findNavController().navigate(R.id.homeFragment)
+                    findNavController().navigate(R.id.otpFragment)
                 }
 
                 is LoginState.Loading -> {
@@ -68,18 +78,23 @@ class LoginFragment : Fragment() {
     }
 
     private fun showErrorDialog(message: String) {
-        CustomConfirmDialog(requireContext(), "Error", message, {
+        val dialog = DialogAuthorization(requireContext(), "Проверьте Ваш Email", message, {
             null
         }).show()
+
     }
 
     private fun applyClick() {
         binding.loginBt.setOnClickListener {
             lifecycleScope.launch {
                 val emailEt = binding.emailET.text.toString()
-                val passwordEt = binding.passwordET.text.toString()
-                viewModel.loginUser(emailEt, passwordEt, requireContext())
+                viewModel.loginUser(emailEt, requireContext())
             }
+            showErrorDialog("Мы отправили код восстановления пароля на вашу электронную почту.")
+            findNavController().navigate(R.id.otpFragment)
+        }
+        dialogBinding.root.setOnClickListener {
+            findNavController().navigate(R.id.otpFragment)
         }
     }
 

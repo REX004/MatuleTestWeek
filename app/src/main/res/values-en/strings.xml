@@ -31,5 +31,20 @@
     <string name="more_info">Подробнее</string>
     <string name="add_to_cart">В корзину</string>
     <string name="favorite">Избранное</string>
+    <string name="autorization">Регистрация</string>
+    <string name="your_name">Ваше имя</string>
+    <string name="authorization">Зарегистрироваться</string>
+    <string name="have_acc">Есть аккаунт?</string>
+    <string name="success">Даю согласие на обработку персональных данных</string>
+    <string name="forgot_password">Забыл пароль</string>
+    <string name="forgot_passsword_description">Введите свою учетную запись для сброса</string>
+    <string name="send">Отправить</string>
+    <string name="otp">OTP проверка</string>
+    <string name="otp_description">Пожалуйста, проверьте свою электронную почту, чтобы увидеть код подтверждения</string>
+    <string name="otp_code">OTP Код</string>
+    <string name="send_again">Отправить заново</string>
+    <string name="_00_30">00:30</string>
+    <string name="write_phrase">Введите фразу</string>
+    <string name="genrate">Genrate</string>
 
 </resources>

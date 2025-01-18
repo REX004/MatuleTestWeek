@@ -85,6 +85,8 @@ dependencies {
     androidTestImplementation("androidx.test:runner:1.4.0")
     androidTestImplementation("androidx.test:rules:1.4.0")
 
+    implementation("com.ibm.icu:icu4j:76.1")
+
     // Koin Core
     implementation("io.insert-koin:koin-core:4.0.1")
 
