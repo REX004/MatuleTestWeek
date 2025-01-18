@@ -111,4 +111,8 @@
         android:id="@+id/cart"
         android:name="com.amirx.matule_app_sessions.ui.main.cart.CartFragment"
         android:label="Cart" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.amirx.matule_app_sessions.ui.main.home.search.SearchFragment"
+        android:label="SearchFragment" />
 </navigation>

@@ -60,9 +60,9 @@ class HomeFragment : BaseFragment() {
         binding.cart.setOnClickListener {
             findNavController().navigate(R.id.cart)
         }
-//        binding.searchET.setOnClickListener {
-//            findNavController().navigate(R.id.sea)
-//        }
+        binding.searchET.setOnClickListener {
+            findNavController().navigate(R.id.searchFragment)
+        }
     }
 
     override fun observeAdapters() {

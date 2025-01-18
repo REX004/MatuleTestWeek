@@ -13,16 +13,16 @@ class CartAdapter(
     private val context: Context,
     private val onDeleteClick: (Cart) -> Unit,
     private val onQuantityChange: (Cart, Int) -> Unit
-) : ListAdapter<Cart, SwipeableListItem>(CartDiffCallback()) {
+) : ListAdapter<Cart, SwipebaleListItem>(CartDiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SwipeableListItem {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SwipebaleListItem {
         val binding = ItemCartBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return SwipeableListItem(binding.root)
+        return SwipebaleListItem(binding.root)
     }
 
-    override fun onBindViewHolder(holder: SwipeableListItem, position: Int) {
+    override fun onBindViewHolder(holder: SwipebaleListItem, position: Int) {
         val item = getItem(position)
         val binding = ItemCartBinding.bind(holder.itemView)
 

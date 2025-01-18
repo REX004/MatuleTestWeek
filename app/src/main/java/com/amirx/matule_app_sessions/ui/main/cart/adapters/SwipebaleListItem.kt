@@ -11,14 +11,15 @@ import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
-class SwipeableListItem(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class SwipebaleListItem(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private var startX = 0f
-    private var currentSwipeDistance = 0f
-    private val swipeThreshold = 0.5f
+    private var currentDistance = 0f
     private val maxSwipeDistance = 200f
+    private val swipeThread = 0.5f
     private val contentView: ViewGroup = itemView.findViewById(R.id.content_view)
-    private val leftActionsView: ViewGroup = itemView.findViewById(R.id.left_actions)
+    private val leftActions: ViewGroup = itemView.findViewById(R.id.left_actions)
     private val rightActions: ViewGroup = itemView.findViewById(R.id.right_actions)
+
 
     init {
         setTouchListener()
@@ -26,15 +27,15 @@ class SwipeableListItem(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setTouchListener() {
-        itemView.setOnTouchListener { view, motionEvent ->
-            when (motionEvent.action) {
+        itemView.setOnTouchListener { _, event ->
+            when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    startX = motionEvent.rawX
+                    startX = event.rawX
                     true
                 }
 
                 MotionEvent.ACTION_MOVE -> {
-                    val delta = motionEvent.rawX - startX
+                    val delta = event.rawX - startX
                     handleSwipe(delta)
                     true
                 }
@@ -49,37 +50,39 @@ class SwipeableListItem(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
     }
 
+
     private fun handleSwipe(delta: Float) {
-        currentSwipeDistance = min(maxSwipeDistance, max(-maxSwipeDistance, delta))
+        currentDistance = min(maxSwipeDistance, max(-maxSwipeDistance, delta))
 
-        contentView.translationX = currentSwipeDistance
+        contentView.translationX = currentDistance
 
-        if (currentSwipeDistance > 0) {
-            leftActionsView.visibility = View.VISIBLE
+        if (currentDistance > 0) {
+            leftActions.visibility = View.VISIBLE
             rightActions.visibility = View.GONE
         } else {
-            leftActionsView.visibility = View.GONE
+            leftActions.visibility = View.GONE
             rightActions.visibility = View.VISIBLE
         }
-        val progress = abs(currentSwipeDistance) / maxSwipeDistance
 
-        if (currentSwipeDistance > 0) {
-            leftActionsView.alpha = progress
+        val progress = abs(currentDistance) / maxSwipeDistance
+
+        if (currentDistance > 0) {
+            leftActions.alpha = progress
         } else {
             rightActions.alpha = progress
         }
     }
 
     private fun handleSwipeRelease() {
-        val progress = abs(currentSwipeDistance) / maxSwipeDistance
+        val progress = abs(currentDistance) / maxSwipeDistance
 
-        if (progress > swipeThreshold) {
+        if (progress > swipeThread) {
             animateSwipe(
-                currentSwipeDistance,
-                if (currentSwipeDistance > 0) maxSwipeDistance else -maxSwipeDistance
+                currentDistance,
+                if (currentDistance > 0) maxSwipeDistance else -maxSwipeDistance
             )
         } else {
-            animateSwipe(currentSwipeDistance, 0f)
+            animateSwipe(currentDistance, 0f)
         }
     }
 
@@ -90,7 +93,6 @@ class SwipeableListItem(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 val delta = animator.animatedValue as Float
                 handleSwipe(delta)
             }
-            start()
         }
     }
 }
