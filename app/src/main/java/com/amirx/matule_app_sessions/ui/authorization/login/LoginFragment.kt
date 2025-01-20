@@ -36,6 +36,7 @@ class LoginFragment : Fragment() {
         applyClick()
 //        val check = SharedPrefsManager(requireContext()).checkToken()
 //        if (check) {
+//            findNavController().popBackStack()
 //            findNavController().navigate(R.id.onboardingFragment)
 //        }
     }

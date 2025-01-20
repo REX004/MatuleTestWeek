@@ -72,6 +72,7 @@ sealed class LoginState {
     class Loading : LoginState()
 }
 
+@Suppress("UNCHECKED_CAST")
 class LoginViewModelProvider() : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return LoginViewModel() as T

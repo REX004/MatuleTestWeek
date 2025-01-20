@@ -77,6 +77,7 @@ dependencies {
     implementation("io.ktor:ktor-client-okhttp:2.3.7")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation("com.yandex.android:maps.mobile:4.4.0-full")
+    implementation("com.yandex.android:maps.mobile:4.4.0-lite")
     implementation("io.ktor:ktor-client-logging:2.3.8")
     testImplementation("junit:junit:4.12")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.21")

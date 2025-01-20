@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.amirx.matule_app_sessions.R
 import com.amirx.matule_app_sessions.data.datasource.network.ResponseState
 import com.amirx.matule_app_sessions.data.models.Cart
 import com.amirx.matule_app_sessions.databinding.FragmentCartBinding
@@ -86,6 +88,13 @@ class CartFragment : BaseFragment() {
                     ).show()
                 }
             }
+        }
+    }
+
+    override fun applyClick() {
+        super.applyClick()
+        binding.checkout.setOnClickListener {
+            findNavController().navigate(R.id.checkoutFragment)
         }
     }
 

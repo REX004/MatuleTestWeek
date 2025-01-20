@@ -74,6 +74,7 @@ sealed class LoginState {
     class Loading : LoginState()
 }
 
+@Suppress("UNCHECKED_CAST")
 class ForgotPasswordViewModelProvider() : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return ForgotPasswordViewModel() as T

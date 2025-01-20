@@ -47,4 +47,8 @@
     <string name="_00_30">00:30</string>
     <string name="write_phrase">Введите фразу</string>
     <string name="genrate">Genrate</string>
+    <string name="checkout">Подтвердить</string>
+    <string name="change_email">Изменить почту</string>
+    <string name="phone_number">Телефон</string>
+    <string name="adress">Адрес</string>
 </resources>

@@ -7,15 +7,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.amirx.matule_app_sessions.R
+import com.amirx.matule_app_sessions.data.datasource.network.ResponseState
 import com.amirx.matule_app_sessions.databinding.FragmentOtpBinding
 import com.amirx.matule_app_sessions.domain.usecase.CustomDialogPassword
 import com.amirx.matule_app_sessions.ui.base.BaseFragment
+import kotlinx.coroutines.launch
 
 class OtpFragment : BaseFragment() {
     private val binding: FragmentOtpBinding by lazy { FragmentOtpBinding.inflate(layoutInflater) }
-    private val correctOtp = "000000" // Замените на ваш правильный OTP-код
+//    private val correctOtp = "000000" // Замените на ваш правильный OTP-код
+
+    private val viewModel: OtpViewModel by viewModels(factoryProducer = {
+        OtpViewModelFactory()
+    })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +39,7 @@ class OtpFragment : BaseFragment() {
     }
 
     private fun startTimer() {
-        object : CountDownTimer(30000, 1000) {
+        object : CountDownTimer(60000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 binding.timerTxt.text = "${millisUntilFinished / 1000}"
                 binding.sendAgainTxt.visibility = View.GONE
@@ -48,17 +56,25 @@ class OtpFragment : BaseFragment() {
         super.applyClick()
         binding.sendAgainTxt.setOnClickListener {
             startTimer()
+            lifecycleScope.launch {
+                checkOtpAndShowDialog()
+            }
+        }
+        binding.backBt.setOnClickListener {
+            requireActivity().onBackPressed()
         }
     }
 
     private fun setupOtpEditTexts() {
         binding.otp6.addTextChangedListener {
-            if (it?.length == 1) {
-                checkOtpAndShowDialog()
+            lifecycleScope.launch {
+                if (it?.length == 1) {
+                    checkOtpAndShowDialog()
+                }
             }
+
         }
 
-        // Добавляем слушатели для автоматического перехода к следующему полю
         binding.otp1.addTextChangedListener { if (it?.length == 1) binding.otp2.requestFocus() }
         binding.otp2.addTextChangedListener { if (it?.length == 1) binding.otp3.requestFocus() }
         binding.otp3.addTextChangedListener { if (it?.length == 1) binding.otp4.requestFocus() }
@@ -66,16 +82,31 @@ class OtpFragment : BaseFragment() {
         binding.otp5.addTextChangedListener { if (it?.length == 1) binding.otp6.requestFocus() }
     }
 
-    private fun checkOtpAndShowDialog() {
+    private suspend fun checkOtpAndShowDialog() {
         val enteredOtp =
             "${binding.otp1.text}${binding.otp2.text}${binding.otp3.text}${binding.otp4.text}${binding.otp5.text}${binding.otp6.text}"
 
-        if (enteredOtp == correctOtp) {
-            setOtpBackgrounds(R.drawable.edit_text_search_background)
-            showCorrectDialog()
-        } else {
-            setOtpBackgrounds(R.drawable.incorrect_text_search_background)
-            // Можно добавить Toast или другую индикацию ошибки
+        viewModel.checkOtp("puknitov@gmail.com", enteredOtp)
+
+        viewModel.state.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is ResponseState.Success -> {
+                    setOtpBackgrounds(R.drawable.edit_text_search_background)
+                    showCorrectDialog()
+                }
+
+                is ResponseState.Error -> {
+                    setOtpBackgrounds(R.drawable.incorrect_text_search_background)
+
+                }
+
+                is ResponseState.Loading -> {
+
+                }
+
+                else -> {}
+
+            }
         }
     }
 

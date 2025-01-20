@@ -9,6 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.amirx.matule_app_sessions.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.yandex.mapkit.MapKitFactory
 
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
@@ -16,6 +17,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        MapKitFactory.setApiKey("AIzaSyBtdCkMGV38958aT-WRIulIu6dVf6RTu8o")
+        MapKitFactory.initialize(this)
 
         window.statusBarColor = ContextCompat.getColor(this, R.color.background)
         val navHostFragment = supportFragmentManager
@@ -41,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.mainBt.setOnClickListener {
-            navController.navigate(R.id.cart)
+            navController.navigate(R.id.checkoutFragment)
         }
     }
 }
