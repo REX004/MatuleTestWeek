@@ -1,4 +1,5 @@
 package com.amirx.matule_app_sessions.ui.main.favorite
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

@@ -2,20 +2,16 @@ package com.amirx.matule_app_sessions.ui.main.home
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.amirx.matule_app_sessions.R
 import com.amirx.matule_app_sessions.data.datasource.network.ResponseState
-import com.amirx.matule_app_sessions.databinding.FragmentHomeBinding
 import com.amirx.matule_app_sessions.databinding.FragmentPopularProductsBinding
 import com.amirx.matule_app_sessions.ui.base.BaseFragment
-import com.amirx.matule_app_sessions.ui.main.home.adapters.CategoryAdapter
 import com.amirx.matule_app_sessions.ui.main.home.adapters.ProductAdapter
 
 
@@ -64,7 +60,7 @@ class PopularProductsFragment : BaseFragment() {
             binding.popularRv.adapter = popularAdapter
 
         } catch (e: Exception) {
-            Log.e("com.amirx.matule_app_sessions.ui.main.home.HomeFragment", "Failed setupUI")
+            Log.e("HomeFragment", "Failed setup UI")
 
         }
     }
@@ -82,7 +78,7 @@ class PopularProductsFragment : BaseFragment() {
                 is ResponseState.Success -> {
                     binding.popularRv.visibility = View.VISIBLE
                     binding.progressBar.visibility = View.GONE
-                    Log.d("com.amirx.matule_app_sessions.ui.main.home.HomeFragment", "Products received: ${state.data}")
+                    Log.d("HomeFragment", "Products received: ${state.data}")
                     popularAdapter.submitList(state.data)
                 }
 

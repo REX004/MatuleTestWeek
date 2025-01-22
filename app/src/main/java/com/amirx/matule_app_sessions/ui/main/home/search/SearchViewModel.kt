@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.room.Query
 import com.amirx.matule_app_sessions.data.datasource.local.SharedPrefsManager
 import com.amirx.matule_app_sessions.data.datasource.network.ResponseState
 import com.amirx.matule_app_sessions.data.models.Product

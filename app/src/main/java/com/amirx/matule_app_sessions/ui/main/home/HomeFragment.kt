@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amirx.matule_app_sessions.R
 import com.amirx.matule_app_sessions.data.datasource.network.ResponseState
-import com.amirx.matule_app_sessions.data.repository.ProductRepository
 import com.amirx.matule_app_sessions.databinding.FragmentHomeBinding
 import com.amirx.matule_app_sessions.ui.base.BaseFragment
 import com.amirx.matule_app_sessions.ui.main.home.adapters.CategoryAdapter
@@ -74,10 +73,10 @@ class HomeFragment : BaseFragment() {
             binding.categoryRv.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.categoryRv.adapter = categoryAdapter
-            Log.d("com.amirx.matule_app_sessions.ui.main.home.HomeFragment", "Successful setupUI")
+            Log.d("HomeFragment", "Successful setup UI")
 
         } catch (e: Exception) {
-            Log.e("com.amirx.matule_app_sessions.ui.main.home.HomeFragment", "Failed setupUI")
+            Log.e("HomeFragment", "Failed setup UI")
 
         }
     }
@@ -96,7 +95,6 @@ class HomeFragment : BaseFragment() {
                     binding.progressBar.visibility = View.GONE
                     popularAdapter.submitList(state.data)
                     categoryAdapter.submitList(state.data)
-
                 }
 
                 is ResponseState.Error -> {
