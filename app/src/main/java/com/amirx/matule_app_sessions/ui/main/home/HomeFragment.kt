@@ -54,9 +54,9 @@ class HomeFragment : BaseFragment() {
 
     override fun applyClick() {
         super.applyClick()
-//        binding.popularContainer.setOnClickListener {
-//            findNavController().navigate(R.id.pop)
-//        }
+        binding.popularContainer.setOnClickListener {
+            findNavController().navigate(R.id.popularProductsFragment)
+        }
         binding.cart.setOnClickListener {
             findNavController().navigate(R.id.cart)
         }

@@ -34,11 +34,11 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
         applyClick()
-//        val check = SharedPrefsManager(requireContext()).checkToken()
-//        if (check) {
-//            findNavController().popBackStack()
-//            findNavController().navigate(R.id.onboardingFragment)
-//        }
+        val check = SharedPrefsManager(requireContext()).checkToken()
+        if (check) {
+            findNavController().popBackStack()
+            findNavController().navigate(R.id.onboardingFragment)
+        }
     }
 
     private fun observeViewModel() {
@@ -60,6 +60,10 @@ class LoginFragment : Fragment() {
                 is LoginState.Loading -> {
                     binding.mainContainer.visibility = View.GONE
                     binding.progressBar.visibility = View.VISIBLE
+                }
+
+                else -> {
+
                 }
             }
         }

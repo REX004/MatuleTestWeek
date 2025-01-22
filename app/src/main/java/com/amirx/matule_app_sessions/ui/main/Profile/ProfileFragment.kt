@@ -6,18 +6,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.amirx.matule_app_sessions.R
+import com.amirx.matule_app_sessions.databinding.FragmentProfileBinding
+import com.amirx.matule_app_sessions.ui.base.BaseFragment
 
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : BaseFragment() {
 
+    private val binding: FragmentProfileBinding by lazy {
+        FragmentProfileBinding.inflate(
+            layoutInflater
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        return binding.root
     }
 
+    override fun applyClick() {
+        super.applyClick()
 
+    }
 }

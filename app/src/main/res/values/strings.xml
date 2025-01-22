@@ -51,4 +51,12 @@
     <string name="change_email">Изменить почту</string>
     <string name="phone_number">Телефон</string>
     <string name="adress">Адрес</string>
+    <string name="profile">Профиль</string>
+    <string name="surname">Фамилия</string>
+    <string name="phone">+7 811-732-5298</string>
+    <string name="address">address</string>
+    <string name="open">Открыть</string>
+    <string name="success_transaction">Вы успешно оформили заказ</string>
+    <string name="success_text">Вернуться к покупкам</string>
+    <string name="notifications">Уведомления</string>
 </resources>

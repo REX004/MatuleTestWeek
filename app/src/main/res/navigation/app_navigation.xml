@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/messageFragment"
-        android:name="com.amirx.matule_app_sessions.ui.main.NotificationFragment"
+        android:name="com.amirx.matule_app_sessions.ui.main.notification.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" />
     <fragment
