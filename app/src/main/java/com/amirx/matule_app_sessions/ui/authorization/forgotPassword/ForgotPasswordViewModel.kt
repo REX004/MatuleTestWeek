@@ -59,7 +59,6 @@ class ForgotPasswordViewModel : ViewModel() {
 
                 else -> {
 
-
                 }
             }
 
