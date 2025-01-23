@@ -77,6 +77,7 @@ dependencies {
     implementation("io.ktor:ktor-client-okhttp:2.3.7")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation("com.yandex.android:maps.mobile:4.4.0-full")
+    implementation("com.yandex.android:maps.mobile:4.4.0-lite")
     implementation("io.ktor:ktor-client-logging:2.3.8")
     testImplementation("junit:junit:4.12")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.21")
@@ -84,6 +85,8 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
     androidTestImplementation("androidx.test:runner:1.4.0")
     androidTestImplementation("androidx.test:rules:1.4.0")
+
+    implementation("com.ibm.icu:icu4j:76.1")
 
     // Koin Core
     implementation("io.insert-koin:koin-core:4.0.1")

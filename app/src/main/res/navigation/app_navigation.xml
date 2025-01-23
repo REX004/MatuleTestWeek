@@ -7,17 +7,37 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.amirx.matule_app_sessions.ui.LoginFragment"
+        android:name="com.amirx.matule_app_sessions.ui.authorization.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_onboardingFragment"
+            app:destination="@id/onboardingFragment">
+
+        </action>
+        <action
+            android:id="@+id/action_loginFragment_to_signupFragment"
+            app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
-        android:name="com.amirx.matule_app_sessions.ui.main.FavoriteFragment"
+        android:name="com.amirx.matule_app_sessions.ui.main.favorite.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/action_favoritesFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment">
+            <argument
+                android:name="product"
+                app:argType="com.amirx.matule_app_sessions.data.models.Product" />
+        </action>
+    </fragment>
     <fragment
         android:id="@+id/messageFragment"
-        android:name="com.amirx.matule_app_sessions.ui.main.NotificationFragment"
+        android:name="com.amirx.matule_app_sessions.ui.main.notification.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" />
     <fragment
@@ -27,7 +47,104 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.amirx.matule_app_sessions.ui.main.HomeFragment"
+        android:name="com.amirx.matule_app_sessions.ui.main.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment">
+            <argument
+                android:name="product"
+                app:argType="com.amirx.matule_app_sessions.data.models.Product" />
+        </action>
+        <action
+            android:id="@+id/action_homeFragment_to_categoryDetailFragment"
+            app:destination="@id/categoryDetailFragment">
+            <argument
+                android:name="product"
+                app:argType="com.amirx.matule_app_sessions.data.models.Product" />
+        </action>
+        <action
+            android:id="@+id/action_homeFragment_to_cart"
+            app:destination="@id/cart" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/productDetailFragment">
+            <argument
+                android:name="product"
+                app:argType="com.amirx.matule_app_sessions.data.models.Product" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="com.amirx.matule_app_sessions.ui.onboarding.OnboardingFragment"
+        android:label="fragment_onboarding"
+        tools:layout="@layout/fragment_onboarding">
+        <action
+            android:id="@+id/action_onboardingFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.amirx.matule_app_sessions.ui.detail.ProductDetailFragment"
+        android:label="fragment_product_detail"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="product"
+            app:argType="com.amirx.matule_app_sessions.data.models.Product" />
+    </fragment>
+    <fragment
+        android:id="@+id/popularProductsFragment"
+        android:name="com.amirx.matule_app_sessions.ui.main.home.PopularProductsFragment"
+        android:label="PopularProductsFragment" />
+    <fragment
+        android:id="@+id/categoryDetailFragment"
+        android:name="com.amirx.matule_app_sessions.ui.detail.CategoryDetailFragment"
+        android:label="CategoryDetailFragment">
+        <argument
+            android:name="category"
+            android:defaultValue=""
+            app:argType="string" />
+        <action
+            android:id="@+id/action_categoryDetailFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment">
+            <argument
+                android:name="product"
+                app:argType="com.amirx.matule_app_sessions.data.models.Product" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/cart"
+        android:name="com.amirx.matule_app_sessions.ui.main.cart.CartFragment"
+        android:label="Cart" >
+        <action
+            android:id="@+id/action_cart_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.amirx.matule_app_sessions.ui.main.home.search.SearchFragment"
+        android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.amirx.matule_app_sessions.ui.authorization.signup.SignupFragment"
+        android:label="SignupFragment" />
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.amirx.matule_app_sessions.ui.authorization.forgotPassword.ForgotPasswordFragment"
+        android:label="ForgotPasswordFragment">
+        <action
+            android:id="@+id/action_forgotPasswordFragment_to_otpFragment"
+            app:destination="@id/otpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/otpFragment"
+        android:name="com.amirx.matule_app_sessions.ui.authorization.otp.OtpFragment"
+        android:label="fragment_otp"
+        tools:layout="@layout/fragment_otp" />
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.amirx.matule_app_sessions.ui.main.checkout.CheckoutFragment"
+        android:label="CheckoutFragment"
+        tools:layout="@layout/fragment_checkout" />
 </navigation>

@@ -4,7 +4,7 @@ import android.util.Patterns
 import com.amirx.matule_app_sessions.data.datasource.network.ResponseState
 import com.google.android.gms.auth.api.identity.SignInPassword
 
-class ValidateLoginUseCase {
+class  ValidateLoginUseCase {
     fun execute(email: String, password: String): ResponseState<Unit> {
         return when {
             isEmailInvalid(email) -> ResponseState.Error("Неверный формат email")
