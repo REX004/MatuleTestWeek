@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
             app:destination="@id/forgotPasswordFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
@@ -147,4 +150,8 @@
         android:name="com.amirx.matule_app_sessions.ui.main.checkout.CheckoutFragment"
         android:label="CheckoutFragment"
         tools:layout="@layout/fragment_checkout" />
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.amirx.matule_app_sessions.ui.product.OrdersFragment"
+        android:label="OrdersFragment" />
 </navigation>

@@ -59,4 +59,5 @@
     <string name="success_transaction">Вы успешно оформили заказ</string>
     <string name="success_text">Вернуться к покупкам</string>
     <string name="notifications">Уведомления</string>
+    <string name="orders">Заказы</string>
 </resources>

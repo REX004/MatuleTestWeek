@@ -95,7 +95,6 @@ class ProductRepository {
                 }
                 .decodeList<Cart>()
             Log.d("ProductRepository", result.toString())
-
             return result
         } catch (e: Exception) {
             return emptyList()
