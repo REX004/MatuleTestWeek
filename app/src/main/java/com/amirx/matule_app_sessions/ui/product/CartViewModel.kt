@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.amirx.matule_app_sessions.data.datasource.network.ResponseState
 import com.amirx.matule_app_sessions.data.repository.ProductRepository
-import com.amirx.matule_app_sessions.ui.main.cart.CartViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
