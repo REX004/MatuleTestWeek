@@ -84,7 +84,7 @@ class LoginFragment : Fragment() {
             }
         }
         binding.recoverBt.setOnClickListener {
-            findNavController().navigate(R.id.forgotPasswordFragment)
+            findNavController().navigate(R.id.ordersFragment)
         }
 
         binding.createUserBt.setOnClickListener {
