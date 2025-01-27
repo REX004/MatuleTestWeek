@@ -127,7 +127,6 @@ class OtpFragment : BaseFragment() {
             "Ниже написан сгенерированный пароль",
             {
                 findNavController().navigate(R.id.homeFragment)
-            }) {
-        }.show()
+            }).show()
     }
 }
