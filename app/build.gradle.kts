@@ -53,7 +53,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.androidx.navigation.ui.ktx)
-
     implementation("androidx.navigation:navigation-dynamic-features-fragment:2.3.0-beta01")
     implementation("androidx.activity:activity-ktx:1.9.0")
     implementation("androidx.room:room-runtime:2.3.0")
@@ -85,18 +84,13 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
     androidTestImplementation("androidx.test:runner:1.4.0")
     androidTestImplementation("androidx.test:rules:1.4.0")
-
     implementation("com.ibm.icu:icu4j:76.1")
-
     // Koin Core
     implementation("io.insert-koin:koin-core:4.0.1")
-
     // Koin Android
     implementation("io.insert-koin:koin-android:4.0.1")
-
     // Koin ViewModel features
     implementation("io.insert-koin:koin-core-viewmodel:4.0.1")
-
     // Koin слабая типизация (optional)
     implementation("io.insert-koin:koin-core-coroutines:4.0.1")
 }

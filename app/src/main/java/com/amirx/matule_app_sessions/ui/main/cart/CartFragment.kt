@@ -1,4 +1,3 @@
-package com.amirx.matule_app_sessions.ui.main.cart
 
 import android.os.Bundle
 import android.util.Log
@@ -8,13 +7,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.amirx.matule_app_sessions.R
 import com.amirx.matule_app_sessions.data.datasource.network.ResponseState
 import com.amirx.matule_app_sessions.data.models.Cart
 import com.amirx.matule_app_sessions.databinding.FragmentCartBinding
 import com.amirx.matule_app_sessions.ui.base.BaseFragment
+import com.amirx.matule_app_sessions.ui.main.cart.CartViewModel
 import com.amirx.matule_app_sessions.ui.main.cart.adapters.CartAdapter
 import kotlinx.coroutines.launch
 
@@ -63,10 +61,9 @@ class CartFragment : BaseFragment() {
             when (response) {
                 is ResponseState.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    binding.mainContainer.visibility = View.VISIBLE
                     cartAdapter.submitList(response.data)
                     Log.d(
-                        "com.amirx.matule_app_sessions.ui.main.cart.CartFragment",
+                        "CartFragment",
                         "Observer: submitList called with ${response.data.size} items"
                     )
                     updateTotals(response.data)
@@ -74,13 +71,10 @@ class CartFragment : BaseFragment() {
 
                 is ResponseState.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
-                    binding.mainContainer.visibility = View.GONE
                 }
 
                 is ResponseState.Error -> {
                     binding.progressBar.visibility = View.GONE
-                    binding.mainContainer.visibility = View.VISIBLE
-
                     Toast.makeText(
                         requireContext(),
                         "Failed: ${response.message}",
@@ -88,13 +82,6 @@ class CartFragment : BaseFragment() {
                     ).show()
                 }
             }
-        }
-    }
-
-    override fun applyClick() {
-        super.applyClick()
-        binding.checkout.setOnClickListener {
-            findNavController().navigate(R.id.checkoutFragment)
         }
     }
 
@@ -112,12 +99,12 @@ class CartFragment : BaseFragment() {
         val delivery = 60.20
         val total = subtotal + delivery
 
-        binding.apply {
-            sumPrice.text = "₽${String.format("%.2f", subtotal)}"
-            sumDelivery.text = "₽${String.format("%.2f", delivery)}"
-            itogTxt.text = "₽${String.format("%.2f", total)}"
-            quantityTxt.text = "${cartItems.size} товара"
-        }
+//        binding.apply {
+//            tvSubtotal.text = "₽${String.format("%.2f", subtotal)}"
+//            tvDelivery.text = "₽${String.format("%.2f", delivery)}"
+//            tvTotal.text = "₽${String.format("%.2f", total)}"
+//            tvItemCount.text = "${cartItems.size} товара"
+//        }
     }
 
     private fun loadCart() {

@@ -21,7 +21,6 @@ class ImageIndicatorAdapter(
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val indicatorImage: ImageView = itemView.findViewById(R.id.cross_image)
-        val imageContainer: CardView = itemView.findViewById(R.id.imageContainer)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,14 +37,6 @@ class ImageIndicatorAdapter(
             .load(imageUrl)
             .placeholder(R.drawable.ic_launcher_foreground)
             .into(holder.indicatorImage)
-
-//        if (position == selectedPosition) {
-//            holder.imageContainer.background =
-//                ContextCompat.getDrawable(context, R.drawable.indicator_selected_background)
-//        } else {
-//            holder.imageContainer.background =
-//                ContextCompat.getDrawable(context, R.drawable.indicator_default_background)
-//        }
     }
 
     override fun getItemCount(): Int = productList.size

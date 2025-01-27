@@ -1,6 +1,6 @@
 package com.amirx.matule_app_sessions.ui.product
 
-import CartAdapter
+import com.amirx.matule_app_sessions.ui.main.cart.adapters.CartAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -63,10 +63,10 @@ class OrdersFragment : BaseFragment() {
                         binding.mainContainer.visibility = View.VISIBLE
 
                         // Группировка элементов корзины
-                        cartAdapter.submitGroupedList(
-                            response.data.filterIsInstance<CartGroupItem.Item>()
-                                .map { it.cart }
-                        )
+//                        cartAdapter.submitGroupedList(
+//                            response.data.filterIsInstance<CartGroupItem.Item>()
+//                                .map { it.cart }
+//                        )
 
                         updateTotals(
                             response.data.filterIsInstance<CartGroupItem.Item>()

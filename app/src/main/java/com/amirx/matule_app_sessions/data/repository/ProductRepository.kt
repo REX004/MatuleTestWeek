@@ -89,9 +89,9 @@ class ProductRepository {
         try {
             val result = SupabaseClient.supabase.from("Cart")
                 .select {
-                    filter {
-                        eq("user_id", user_id)
-                    }
+//                    filter {
+//                        eq("user_id", "some_user_id")
+//                    }
                 }
                 .decodeList<Cart>()
             Log.d("ProductRepository", result.toString())

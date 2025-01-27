@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="14dp">
 
-    <!-- Left actions (quantity controls) -->
     <LinearLayout
         android:id="@+id/left_actions"
         android:layout_width="wrap_content"

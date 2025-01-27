@@ -77,6 +77,9 @@
                 android:name="product"
                 app:argType="com.amirx.matule_app_sessions.data.models.Product" />
         </action>
+        <action
+            android:id="@+id/action_homeFragment_to_exampleFragment"
+            app:destination="@id/exampleFragment" />
     </fragment>
     <fragment
         android:id="@+id/onboardingFragment"
@@ -118,7 +121,7 @@
     </fragment>
     <fragment
         android:id="@+id/cart"
-        android:name="com.amirx.matule_app_sessions.ui.main.cart.CartFragment"
+        android:name="CartFragment"
         android:label="Cart" >
         <action
             android:id="@+id/action_cart_to_checkoutFragment"
@@ -154,4 +157,9 @@
         android:id="@+id/ordersFragment"
         android:name="com.amirx.matule_app_sessions.ui.product.OrdersFragment"
         android:label="OrdersFragment" />
+    <fragment
+        android:id="@+id/exampleFragment"
+        android:name="com.amirx.matule_app_sessions.ui.main.home.ExampleFragment"
+        android:label="fragment_example"
+        tools:layout="@layout/fragment_example" />
 </navigation>

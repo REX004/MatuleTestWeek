@@ -1,5 +1,4 @@
 package com.amirx.matule_app_sessions.ui.main.cart.adapters
-
 import android.content.Context
 import android.view.ViewGroup
 import android.view.LayoutInflater
@@ -7,12 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.amirx.matule_app_sessions.data.models.Cart
 import com.amirx.matule_app_sessions.databinding.ItemCartBinding
-import com.amirx.matule_app_sessions.ui.product.CartGroupItem
 import com.bumptech.glide.Glide
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
-import java.text.SimpleDateFormat
-import java.util.Locale
 
 class CartAdapter(
     private val context: Context,

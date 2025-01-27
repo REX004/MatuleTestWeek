@@ -1,5 +1,6 @@
 package com.amirx.matule_app_sessions.ui.authorization.otp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -45,6 +46,7 @@ class OtpFragment : BaseFragment() {
                 binding.sendAgainTxt.visibility = View.GONE
             }
 
+            @SuppressLint("SetTextI18n")
             override fun onFinish() {
                 binding.timerTxt.text = "0:00"
                 binding.sendAgainTxt.visibility = View.VISIBLE
@@ -97,11 +99,9 @@ class OtpFragment : BaseFragment() {
 
                 is ResponseState.Error -> {
                     setOtpBackgrounds(R.drawable.incorrect_text_search_background)
-
                 }
 
                 is ResponseState.Loading -> {
-
                 }
 
                 else -> {}

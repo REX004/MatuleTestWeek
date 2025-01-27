@@ -38,6 +38,10 @@ open class BaseFragment : Fragment() {
 
     }
 
+    open fun onBackPressed(){
+        requireActivity().onBackPressed()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         applyClick()
